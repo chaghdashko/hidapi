@@ -868,7 +868,9 @@ HID_API_EXPORT const wchar_t * HID_API_CALL  hid_error(hid_device *dev)
 
 /*#define PICPGM*/
 /*#define S11*/
-#define P32
+/*#define P32*/
+#define CUSTOM_ARCH
+
 #ifdef S11 
   unsigned short VendorID = 0xa0a0;
 	unsigned short ProductID = 0x0001;
@@ -885,6 +887,10 @@ HID_API_EXPORT const wchar_t * HID_API_CALL  hid_error(hid_device *dev)
   unsigned short ProductID = 0x0033;
 #endif
 
+#ifdef CUSTOM_ARCH
+  unsigned short VendorID = 0x045e;
+  unsigned short ProductID = 0x0752;
+#endif
 
 #if 0
 int __cdecl main(int argc, char* argv[])
@@ -902,7 +908,8 @@ int __cdecl main(int argc, char* argv[])
 	
 
 	/* Open the device. */
-	int handle = open(VendorID, ProductID, L"12345");
+	printf("Opening device %d:%d\n", VendorID, ProductID);
+	int handle = open(VendorID, ProductID, NULL);
 	if (handle < 0)
 		printf("unable to open device\n");
 

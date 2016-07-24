@@ -69,7 +69,8 @@ int main(int argc, char* argv[])
 	// Open the device using the VID, PID,
 	// and optionally the Serial number.
 	////handle = hid_open(0x4d8, 0x3f, L"12345");
-	handle = hid_open(0x4d8, 0x3f, NULL);
+	printf("Trying to open %04x:%04x\n", 0x046d, 0xc52f);
+	handle = hid_open(0x046d, 0xc52f, NULL);
 	if (!handle) {
 		printf("unable to open device\n");
  		return 1;
